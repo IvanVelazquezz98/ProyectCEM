@@ -8,7 +8,7 @@ const router = Router();
 
 
 
-
+//para que este mas ordenadito los dividimos, asi no se hace un mejunje de rutas
 router.use('/api/users' , usersRoute)
 router.use('/api/sede' , sedeRoute)
 router.use('/api/study' , studyRoute)

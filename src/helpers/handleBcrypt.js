@@ -1,5 +1,5 @@
 const bcrypt = require ('bcryptjs')
-//es una libreria para encriptar contraseñas
+//bcrypt es una libreria para encriptar contraseñas
 //encrypt hace el encriptado.
 const encrypt = async (textPplain ) => {
   const hash = await bcrypt.hash( textPplain, 10);
