@@ -2,8 +2,12 @@ const { Estudio } = require("../../db");
 //updateUser hace una actualizacion al usuario, no creo que lo usemos
 async function updateEstudio(req, res, next) {
     const {
-        name, priority, files,
-        timeStamp, sedeId
+        name,
+        method,
+        reference,
+        priority,
+        files,
+        notes,
     } = req.body;
     //basicamente recibe los parametros por body
     try {
@@ -15,11 +19,11 @@ async function updateEstudio(req, res, next) {
             //en el otro caso es pq si hay usuario y procede a actualizar su info con la info de req.body
             let studyDB = await study.update({
                 name,
+                method,
+                reference,
                 priority,
                 files,
-                timeStamp,
-                userId,
-                sedeId
+                notes,
             });
 
             if (studyDB.length > 0) return res.status(200).json(studyDB);
