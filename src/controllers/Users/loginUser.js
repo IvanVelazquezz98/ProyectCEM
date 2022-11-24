@@ -18,7 +18,7 @@ async function loginUser(req, res, next) {
 //en el otro caso significa que el usuario existe, pero hay que comprobar que la 
 //contraseña sea la correcta. Por eso usamos compare
         const checkPassword = await compare(password, user.password);
-//si checkpasswors entonces el usuaro puede ingresar pq es la misma contraseña
+//si checkpasswors == true entonces el usuaro puede ingresar pq es la misma contraseña
 //en este caso se deberia llenar un estado global del front para ya tener la info del 
 //usuario
         if (checkPassword) {
@@ -27,11 +27,11 @@ async function loginUser(req, res, next) {
             userId: user.id,
             totalUser: user
           }
-          return res.status(200).json(result);
+           res.status(200).json({existe:true, result});
 
         } else {
 //en el otro caso la contraseña no seria correcta
-          return res.status(404).json("La contraseña no es correcta");
+           res.status(404).json({existe:false });
         }
       }
 

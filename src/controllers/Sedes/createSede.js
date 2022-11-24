@@ -5,14 +5,13 @@ const { Sede } = require("../../db");
 async function createSede(req, res, next) {
 
     // le pasamos los datos del usuario por body
-    const { name, userId } = req.body;
+    const { name } = req.body;
 
     try {
 
         //agarramos los datos del usuario para crear un nuevo sede con los datos proporcionados
         const sede = await Sede.create({
-            name,
-            userId
+            name
         });
 
         //Si hay algun error al crear el estudio el backend te devuelve el siguiente mensaje

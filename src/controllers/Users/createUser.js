@@ -6,7 +6,7 @@ async function createUser(req, res, next) {
 
   try {
     //deberia llegarle por body email password y name
-    const { email, name, password } = req.body;
+    const { email, name, password , sede } = req.body;
     //con este if comprobamos que el usuario no exista, y llenamos o no la const user
     if (email && name && password) {
       const user = await Usuario.findAll({
@@ -19,7 +19,8 @@ async function createUser(req, res, next) {
           email,
           name,
           password: passwordHash,
-          type: "User"
+          type: "User",
+          sedeName: sede
         });
 // porlotanto creamos al usuario , tambien usamos encrypt para hashear la password
          res.status(200).send({ Msg: "Usuario creado con exito", user:user});
