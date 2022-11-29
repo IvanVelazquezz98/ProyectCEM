@@ -39,6 +39,7 @@ Usuario.hasMany(Estudio)
 Estudio.belongsTo(Usuario)
 
 //Por lo que entiendo un usuario solo pertenece a una sede? cualquier cosa avisa y se cambia
+
 Sede.hasOne(Usuario)
 Usuario.belongsTo(Sede)
 
