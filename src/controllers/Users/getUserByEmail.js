@@ -1,4 +1,4 @@
-const { Usuario } = require("../../db");
+const { Usuario, Sede } = require("../../db");
 //getUserByEmail busca un usuario por su email
 async function getUserByEmail(req, res, next) {
   //deberia resibir por params un mail
@@ -8,7 +8,7 @@ async function getUserByEmail(req, res, next) {
       const user = await Usuario.findOne({
         where: {
           email,
-        },
+        },include:[Sede]
       });
 //si user no esta vacio es porque elo usuario existe y te devuelte un boleano para 
 //hacer mas facil la comprobacion en front mas el usuario
