@@ -18,22 +18,12 @@ async function createEstudio(req, res, next) {
             priority,
             files,
             notes,
+            userId,
+            sedeId
         });
 
-        let sede = await Sede.findByPk(sedeId);
-
-        let estudioConSede = await estudio.addSede(sede);
-
-        let usuario = await Usuario.findByPk(userId);
-
-        let estudioConUsuario = await estudio.addUsuario(usuario);
-
         //Si hay algun error al crear el estudio el backend te devuelve el siguiente mensaje
-        if (!estudioConSede) {
-            res.status(401).send({ message: "no se pudo identificar la sede" })
-        } else if (!estudioConUsuario) {
-            res.status(402).send({ message: "no se pudo identificar el usuario" })
-        } else if (!estudio) {
+        if (!estudio) {
             res.status(400).send({ message: "Oops no se pudo crear el pack :(" })
         }
         //En caso de que los datos hayan sido proporcionados de forma correcta se procede a crear el estudio
