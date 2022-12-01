@@ -5,31 +5,60 @@ const { Estudio, Sede, Usuario } = require("../../db");
 async function createEstudio(req, res, next) {
 
     // le pasamos los datos del usuario por body
-    const { name, method, reference, priority, files,
-        notes, userId, sedeId } = req.body;
+    const { studyEco , studyDoppler } = req.body;
 
     try {
+        
 
-        //agarramos los datos del usuario para crear un nuevo estudio con los datos proporcionados
+        if(studyEco && !studyDoppler){
+
         const estudio = await Estudio.create({
-            name,
-            method,
-            reference,
-            priority,
-            files,
-            notes,
-            userId,
-            sedeId
+
+            method : studyEco.method,
+            reference : null ,
+            clasification : studyEco.clasification,
+            files : studyEco.files,
+            notes : studyEco.notes,
+            date : studyEco.date,
+            usuarioId : studyEco.userId,
+            sedeName : studyEco.sedeName
+
         });
-
-        //Si hay algun error al crear el estudio el backend te devuelve el siguiente mensaje
-        if (!estudio) {
-            res.status(400).send({ message: "Oops no se pudo crear el pack :(" })
+        res.status(200).send({message: "estudio creador" , study: estudio})
         }
-        //En caso de que los datos hayan sido proporcionados de forma correcta se procede a crear el estudio
-        // y devolverte la informacion del mismo
-        else { res.status(200).send({ message: "estudio creado", estudio: estudio }); }
 
+
+        if(studyEco && studyDoppler){
+
+            const estudio = await Estudio.create({
+                method : studyEco.method,
+                reference : studyEco.reference ,
+                clasification : studyEco.clasification,
+                files : studyEco.files,
+                notes : studyEco.notes,
+                date : studyEco.date,
+                usuarioId : studyEco.userId,
+                sedeName : studyEco.sedeName
+            });
+
+            const estudioConDoppler = await Estudio.create({
+                method : studyDoppler.method,
+                reference : estudio.id ,
+                clasification : studyDoppler.clasification,
+                files : studyDoppler.files,
+                notes : studyDoppler.notes,
+                date : studyDoppler.date,
+                usuarioId : studyEco.userId,
+                sedeName : studyEco.sedeName
+            });
+        res.status(200).send({message: "estudios creados" , study: estudio , studyTwo: estudioConDoppler})
+
+
+        }
+        else if (!studyEco && !studyDoppler){
+        
+        res.status(400).send({message: "fallo la creacion del estudio"})
+    }
     } catch (error) {
         next(error);
     }

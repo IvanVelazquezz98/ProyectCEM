@@ -10,36 +10,33 @@ module.exports = sequelize => {
       primaryKey: true
     },
     name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING
+ 
     },
 
     method: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
+
     },
 
     reference: {
-      type: DataTypes.UUID,
-      allowNull: false
+      type: DataTypes.TEXT,
+      
+
     },
 
-    priority: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    clasification: {
+      type: DataTypes.STRING
     },
 
     files: {
-      type: DataTypes.TEXT,
-      allowNull: true,
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
-
     notes: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.TEXT
     },
     date:{
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: true
     }
   });
