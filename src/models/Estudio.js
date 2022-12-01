@@ -20,11 +20,12 @@ module.exports = sequelize => {
     },
 
     reference: {
-      type: DataTypes.UUID
+      type: DataTypes.TEXT,
+      
 
     },
 
-    priority: {
+    clasification: {
       type: DataTypes.STRING
     },
 
@@ -35,7 +36,7 @@ module.exports = sequelize => {
       type: DataTypes.TEXT
     },
     date:{
-      type: DataTypes.DATE,
+      type: DataTypes.TEXT,
       allowNull: true
     }
   });
