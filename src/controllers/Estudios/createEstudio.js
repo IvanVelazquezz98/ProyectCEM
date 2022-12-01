@@ -6,7 +6,7 @@ async function createEstudio(req, res, next) {
 
     // le pasamos los datos del usuario por body
     const { name, method, reference, priority, files,
-        notes, userId, sedeId } = req.body;
+        notes,date, userId, sedeId } = req.body;
 
     try {
 
@@ -18,6 +18,7 @@ async function createEstudio(req, res, next) {
             priority,
             files,
             notes,
+            date
         });
 
         let sede = await Sede.findByPk(sedeId);
@@ -34,7 +35,7 @@ async function createEstudio(req, res, next) {
         } else if (!estudioConUsuario) {
             res.status(402).send({ message: "no se pudo identificar el usuario" })
         } else if (!estudio) {
-            res.status(400).send({ message: "Oops no se pudo crear el pack :(" })
+            res.status(400).send({ message: "Oops no se pudo crear el estudio :(" })
         }
         //En caso de que los datos hayan sido proporcionados de forma correcta se procede a crear el estudio
         // y devolverte la informacion del mismo
