@@ -13,6 +13,7 @@ async function createEstudio(req, res, next) {
         if(studyEco && !studyDoppler){
 
         const estudio = await Estudio.create({
+
             method : studyEco.method,
             reference : null ,
             clasification : studyEco.clasification,
@@ -21,9 +22,11 @@ async function createEstudio(req, res, next) {
             date : studyEco.date,
             usuarioId : studyEco.userId,
             sedeName : studyEco.sedeName
+
         });
         res.status(200).send({message: "estudio creador" , study: estudio})
         }
+
 
         if(studyEco && studyDoppler){
 
@@ -49,6 +52,7 @@ async function createEstudio(req, res, next) {
                 sedeName : studyEco.sedeName
             });
         res.status(200).send({message: "estudios creados" , study: estudio , studyTwo: estudioConDoppler})
+
 
         }
         else if (!studyEco && !studyDoppler){
