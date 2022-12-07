@@ -1,13 +1,24 @@
 const { Estudio, Usuario, Sede } = require("../../db");
 
-async function getEstudioForUser(req, res, next) {
+async function getFilteredStudies(req, res, next) {
 
-  const { userId } = req.params;
+  const { userId,
+    daySelected,
+    monthSelected,
+    valueCheckBox
+  } = req.body;
+
+
   try {
 
     const estudios = await Estudio.findAll({
       where: {
         usuarioId: userId,
+      },
+      if(daySelected) {
+        where: {
+
+        }
       }
     });
 
